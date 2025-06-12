@@ -1,6 +1,6 @@
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        # 1st try
+        # 1st brute force
         # time => O(log n)
         # space => O(log n)
         # palindrome = str(x)[::-1] # string reverse
@@ -8,7 +8,7 @@ class Solution:
         #     return True
         # return False
 
-        # 2nd try => solve without converting the integer to a string
+        # 2nd optimization => solve without converting the integer to a string
         # time => O(log n)
         # space => O(1)
         # new_x = 0
@@ -24,7 +24,7 @@ class Solution:
         #     return True
         # return False
 
-        # 3rd => half reversal : faster than integer reversal
+        # 3rd optimization => half reversal : faster than integer reversal
         # time => O(log n)
         # space => O(1)
         reverse_half = 0
