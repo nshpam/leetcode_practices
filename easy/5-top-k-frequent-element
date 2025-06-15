@@ -1,0 +1,62 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        """
+        - top most frequent element from the list
+        - k=2 => return top 2 most frequent elements
+        - k=5 => return top 5 ""
+
+        - find the frequency of each unique element => hash map => O(n)
+        # sorted the values of the hashmap and slice only the k that we want
+        - find the top k from that frequency => O(n)
+        - return the elements not the frequency of the element
+        Note:
+        - the number can be negative
+        - the list can contain 1 number and more than that
+        - k can be 1 or more than 1
+        follow up:
+        - what if there is the same frequency => this would never happen because the answer will always be unique
+        """
+
+        if len(nums) == 1:
+            return nums
+
+        # define hash map variable
+        num_to_f = {}
+
+        # find the f of each element
+        for num in nums:
+            if num not in num_to_f:
+                num_to_f[num] = 1
+            num_to_f[num] += 1
+
+        # create a bucket list
+        # the index will be the frequency of the number
+        # [[], [3], [2], [1], [], [], []]
+        #  0    1    2    3   4   5    6
+        buckets = [[] for elist in range(len(nums)+1)]
+
+        # print(num_to_f)
+
+        # insert the number in to the index of bucket list
+        for b in range(len(buckets)-1,1,-1):
+            for key in num_to_f:
+                # print(key,num_to_f[key],b)
+                if num_to_f[key] == b:
+                    buckets[b].append(key)
+                    continue
+        
+        # retrieve the most k frequent value
+        # return the value
+        
+        count_k = 0
+        result = []
+        for b in range(len(buckets)-1,1,-1):
+            if count_k == 2:
+                break
+
+            if buckets[b] != []:
+                result.append(buckets[b][0])
+                count_k+=1
+                continue
+        
+        return result
