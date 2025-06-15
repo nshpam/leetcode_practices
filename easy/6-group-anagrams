@@ -1,0 +1,51 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        """
+        - anagrams => word that have the same letters but write in different order
+        - group of the anagram => [A1, A2, A3]
+        - length of the group can be 1
+        - the length of the string can be 0
+        """
+
+        # check if the length of the string is 0 then return itself
+        # check if there is only one group of anagram then return itself
+        # ["","tea","tan","ate","nat","bat"]
+        # [[""],["bat"],["nat","tan"],["ate","eat","tea"]]
+        if len(strs) == 1:
+            return [strs]
+        """
+        # method #1
+        # eat | tea | tan | ate | nat | bat
+        # 1=>sort => m * n log n => O(m*n log n)
+        # 2=>group
+        # finish in one loop => O(n)
+        # use sorted operation
+        #   {
+                'aet': ['eat','tea','ate']
+                'ant': ['tan','nat']
+                'abt' : ['bat']
+            }
+        """
+        # define the dictionary of group of the anagrams
+        anagrams = {}
+        result = []
+        # iterate each word in the list
+        for word in strs: # O(m)
+            # count the length of the word and skip the sort step if it's empty string
+            if len(word) != 0:
+                wsort = ''.join(sorted(word)) # merge sort + insertion sort => O(n log n)
+            else:
+                wsort = 'empty'
+
+            if wsort not in anagrams:
+                anagrams[wsort] = [word]
+                continue
+            anagrams[wsort].append(word)
+            # print(word)
+        return list(anagrams.values())
+        
+        # O(mn log n)
+        # print()
+        # sort the current word by alpabetic
+        # use the sorted word as a key and the unsorted word as a value
+        
