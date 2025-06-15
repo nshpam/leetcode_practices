@@ -4,7 +4,7 @@ class Solution:
         - count how many unique numbers are there
         - change nums array into an array with unique numbers
         """
-        # [0,1,2,3,4,2,2,3,3,4]
+        # [0,0,1,1,1,2,2,3,3,4]
         #                    ^j
         #          ^i
         # cost O(n)
